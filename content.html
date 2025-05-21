@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block head_content %}
+<!-- 다음 콘텐츠 URL을 메타 태그로 포함 -->
+<meta name="next-content-url" content="{{ next_link }}">
+<!-- 뒤로가기 방지 스크립트 -->
+<script>
+    // 페이지 로드 시 히스토리에 현재 상태 추가
+    window.onload = function() {
+        // 첫 화면으로 리다이렉트하는 상태 추가
+        history.pushState(null, null, window.location.href);
+        
+        // 뒤로가기 감지 시 루트 페이지로 이동
+        window.addEventListener('popstate', function() {
+            window.location.href = '/';
+        });
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="content-card">
+    <div class="content-header">
+        <h1 class="content-title">{{ title }}</h1>
+    </div>
+    
+    <div class="content-body">
+        <!-- Main content -->
+        <div class="main-content">
+            {{ content|safe }}
+        </div>
+        
+        <!-- Mid-content ad -->
+        <div class="ad-section my-4">
+            {{ ad_code|safe }}
+        </div>
+    </div>
+    
+    <div class="content-footer">
+        <a href="{{ next_link }}" class="btn btn-next-content">
+            <span data-i18n="next_content">다음 콘텐츠 보기</span>
+            <i class="fas fa-arrow-right ms-2"></i>
+        </a>
+        
+        <div class="share-buttons mt-3">
+            <button class="btn btn-sm btn-share">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="btn btn-sm btn-share">
+                <i class="fab fa-twitter"></i>
+            </button>
+            <button class="btn btn-sm btn-share">
+                <i class="fab fa-instagram"></i>
+            </button>
+            <button class="btn btn-sm btn-share">
+                <i class="fab fa-line"></i>
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}

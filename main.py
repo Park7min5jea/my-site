@@ -66,7 +66,7 @@ def generate_content(index):
     return data
 
 # 📂 출력 디렉토리 생성
-os.makedirs("output_pages", exist_ok=True)
+os.makedirs("docs", exist_ok=True)
 
 # 🔁 HTML 페이지 10개 생성
 for i in range(1, 11):
@@ -78,7 +78,7 @@ for i in range(1, 11):
                    .replace("{{ad_code}}", ad_code)\
                    .replace("{{next_link}}", f"page{i+1}.html" if i < 10 else "page1.html")
 
-    with open(f"output_pages/page{i}.html", "w", encoding="utf-8") as f:
+    with open(f"docs/page{i}.html", "w", encoding="utf-8") as f:
         f.write(html)
 
 print("\n✅ 모든 페이지 생성 완료!")

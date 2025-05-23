@@ -33,7 +33,7 @@ def generate_content(index):
     }}
     """
 
-    prompt = prompt.replace("{", "{{").replace("}", "}}")  # GPT 이스케이프 처리
+    #prompt = prompt.replace("{", "{{").replace("}", "}}")  # GPT 이스케이프 처리
 
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",  # 또는 gpt-4
